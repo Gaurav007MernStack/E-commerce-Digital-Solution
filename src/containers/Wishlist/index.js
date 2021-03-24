@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import { Container, Form, Row, Col, Button, Card, CardGroup } from 'react-bootstrap';
+import axios from 'axios';
 import Layout2 from '../../components/Layout2';
+import {useHistory} from 'react-router-dom';
 
 /**
 * @author
@@ -7,6 +10,8 @@ import Layout2 from '../../components/Layout2';
 **/
 
 const Wishlist = (props) => {
+  const history = useHistory();
+  const handleOnClick = () => history.push('/myOrders');
   const [wishlist,setwishlist] = useState({
     "Products": [
         {
@@ -35,6 +40,21 @@ const Wishlist = (props) => {
     "updatedAt": "2021-03-18T09:08:43.131Z",
     "__v": 0
 });
+//get Wishlist For Admin
+const fetchwishlist = async () => {
+  try {
+      const res = await axios.get(`http://localhost:2000/getAllwishlist`);
+      //setwishlist(res.data);
+      console.log("this",res.data)
+  } catch (error) {
+      console.log("error", error);
+  }
+  //console.log("res",allwishlist);
+};
+//useEffect
+useEffect(() => {
+fetchwishlist();
+}, []);
   return(
     <Layout2>
         <div className="wishlist">
@@ -45,7 +65,7 @@ const Wishlist = (props) => {
           </div>
           <div className="userOrder">
             <div className="orderTitile">My Orders</div>
-            <button className="orderIcon">{'>'}</button>
+            <button type="button" onClick={handleOnClick} className="orderIcon">{'>'}</button>
           </div>
         </div>
           <div className="wMain">

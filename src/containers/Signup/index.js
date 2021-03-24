@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Form, Row, Col, Button, Card, CardGroup,Jumbotron,Spinner } from 'react-bootstrap';
+import axios from 'axios';
 import Layout from '../../components/Layout';
+import { toast } from 'react-toastify';
 //import Input from '../../components/UI/Input';
 
 /**
@@ -9,6 +11,7 @@ import Layout from '../../components/Layout';
 **/
 
 const Signup = (props) => {
+  const [loader, setloader] = useState(false);
   const [signup,setsignup] = useState({
     firstName: "",
     lastName: "",
@@ -21,13 +24,31 @@ const Signup = (props) => {
 };
 const OnFormSubmit = (e)=>{
   e.preventDefault();
-  console.log(signup);
+  usersignup();
   setsignup({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   })
+};
+const usersignup = async() => {
+  setloader(true);
+  try {
+    const res = await axios.post(`http://localhost:2000/signup`,signup);
+    setloader(false);
+    setsignup({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    })
+    toast.success("SignUp Successfully")
+  } catch (error) {
+    console.log("error",error);
+    setloader(false);
+    toast.error("Signup Failed")
+  }
 };
   return (
     <Layout>
@@ -80,9 +101,24 @@ const OnFormSubmit = (e)=>{
                 type="password"
                 onChange={(e)=>handleDataChange(e)}
               />
-              <Button variant="primary" type="submit" id="signup">
+              {
+                loader ? (
+                  <Button variant="primary" type="submit" id="signup" >
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />Loading...
+                  </Button>
+                ) : ("")
+              }
+              {
+                loader ? ("") : (<Button variant="primary" type="submit" id="signup">
                 Signup
-              </Button>
+              </Button>)
+              }
             </Form>
           </Col>
         </Row>

@@ -1,5 +1,16 @@
+/*Admin Name*/
+.adminHead{
+    color: #000;
+    text-shadow: 0 0 2px #fff, 1px 1px 5px #000;
+}
 .navclr{
     background: #000;
+}
+/*Home Page*/
+.homeTitleHead{
+    color: #ddd;
+    text-shadow: 1px 1px 10px #000 , 3px 3px 5px red;;
+    font-size: 90px;
 }
 input{
     width:35vw;
@@ -218,6 +229,7 @@ form{
     background: #fff;
     height: 100px;
 }
+
 .wTitle{
     font-size: 60px;
 }
@@ -249,11 +261,198 @@ form{
     box-shadow: 0 0 5px #000;
     margin-top: 35%;
 }
+/*All Products*/
+/*.orderTitle{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+    padding: 5%;
+    background: rgb(58, 32, 32);
+    color: #f5f5f5;
+    margin-bottom: 5%;
+}*/
+.orderHeading{
+    font-size: 50px;
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px 5px #000;
+}
+.allOrders{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    font-size: 30px;
+    height: 100px;
+    background: #495057;
+    color: #f7f7f7;
+    line-height: 2;
+    padding: 1%;
+    align-items: center;
+    text-align: center;
+}
+.productDetail{
+    flex: 25%;
+    box-shadow: 0 0 10px #56f622;
+}
+.userDetail{
+    flex: 25%;
+    box-shadow: 0 0 10px #56f622;
+}
+.timeDetail{
+    flex: 20%;
+    box-shadow: 0 0 10px #56f622;
+}
+.Status{
+    flex: 20%;
+    box-shadow: 0 0 10px #56f622;
+}
+.orderRemove{
+    flex: 10%;
+    box-shadow: 0 0 10px #56f622;
+}
+.allOrderData{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1%;
+    margin-bottom: 5%;
+}
+.productData{
+    flex: 25%;
+}
+.cardProduct{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 2%;
+    box-shadow: 0 0 10px #56f622;
+}
+.productMainDetail{
+    display: flex;
+    flex-wrap: wrap;
+}
+.productMain{
+    display: flex;
+    flex-wrap: wrap;
+}
+._id{
+    width: 205px;
+    /*margin-left: 9%;*/
+    margin-bottom: 0;
+}
+._title{
+    /*margin-left: 33%;*/
+    margin-bottom: 15px;
+}
+.productAuthor{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    text-decoration: underline;
+}
+.productPrice{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    border: 1px solid #8daeeb;
+    margin-bottom: 0;
+    font-size: 25px;
+    text-shadow: 1px 1px 0 #000;
+    background: goldenrod;
+}
+
+.userData{
+    flex: 25%;
+}
+.timeData{
+    flex: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 0 10px #56f622;
+}
+.timeData h3{
+    font-size: 20px;
+    line-height: 5;
+}
+.StatusData{
+    flex: 20%;
+}
+.orderRemData{
+    flex: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 0 10px #56f622;
+}
+#ordRem{
+    height: 50px;
+    width: 50px;
+    margin-top: 65%;
+    border-top-left-radius: 20px;
+    background: red;
+}
+
+/*All Products*/
+.allProduct{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #fff;
+    height: 100px;
+    margin-top: 5%;
+}
+.allProductHead{
+    font-size: 50px;
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px 5px #000;
+}
+/*Footer Bootstrap*/
+table{
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-bottom: 1px solid rgb(61, 61, 61);
+}
+thead{
+    background-color: rgb(38, 53, 63);
+}
+thead tr td{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 20px;
+}
+tbody tr td{
+    background-color: rgb(247, 244, 248);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+td{
+    cursor: pointer;
+}
+tr{
+    margin: 10px;
+}
+.para{
+    text-align: center;
+}
+.card-img-top{
+    height: 200px!important;
+    cursor: pointer;
+}
 @media(max-width:500px){
     input{
         width:85vw
     }
     #fname, #lname {
         width: 104%;
+    }
+    .homeTitleHead {
+        font-size: 40px;
     }
 }

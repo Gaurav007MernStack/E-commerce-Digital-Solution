@@ -34,6 +34,13 @@ const Header = (props) => {
                         <li className="nav-item">
                             <NavLink to="signup" className="nav-link">Signup</NavLink>
                         </li>
+                        
+                        <li className="nav-item">
+                            <NavLink to="getAllOrders" className="nav-link">All Orders</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="getAllProducts" className="nav-link">All Products</NavLink>
+                        </li>
                         <li className="nav-item">
                             <NavLink to="myWishlist" className="nav-link">Wishlist</NavLink>
                         </li>
