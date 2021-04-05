@@ -112,7 +112,7 @@ form{
 }
 .wMain{
     flex: 70%;
-    background: blueviolet;
+    background: border-box;
 }
 /*Wishlist Main Part*/
 
@@ -215,10 +215,10 @@ form{
     font-size: 20px;
     border-radius: 20px;
 }
-.wMain{
+/*.wMain{
     flex: 70%;
-    background: blueviolet;
-}
+    background: border-box;
+}*/
 /*order Main Part*/
 
 .orderTitle{

@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button, Card, CardGroup,Jumbotron,Spinner } 
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import { toast } from 'react-toastify';
+import {useHistory} from 'react-router-dom';
 //import Input from '../../components/UI/Input';
 
 /**
@@ -11,6 +12,8 @@ import { toast } from 'react-toastify';
 **/
 
 const Signup = (props) => {
+  const history = useHistory();
+  const handleOnClick = () => history.push('/user/home');
   const [loader, setloader] = useState(false);
   const [signup,setsignup] = useState({
     firstName: "",
@@ -44,6 +47,7 @@ const usersignup = async() => {
       password: "",
     })
     toast.success("SignUp Successfully")
+    handleOnClick();
   } catch (error) {
     console.log("error",error);
     setloader(false);

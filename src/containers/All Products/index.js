@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Row, Col, Button, Card, CardGroup, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import Layout from '../../components/Layout';
+import Layout3 from '../../components/Layout3';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 //import Input from '../../components/UI/Input';
 
 /**
@@ -11,6 +12,7 @@ import { toast } from 'react-toastify';
 **/
 
 const AllProducts = (props) => {
+  const history = useHistory();
   const [loader, setloader] = useState(false);
   const [loader2, setloader2] = useState(false);
   const [loader3, setloader3] = useState(false);
@@ -52,15 +54,26 @@ const AllProducts = (props) => {
     }
   };
   //useEffect
+  let token_u = localStorage.getItem('token');
+  let token = JSON.parse(token_u);
+  let user_u = localStorage.getItem('user');
+  let user = JSON.parse(user_u);
   useEffect(() => {
-    fetchProducts();
-  }, [])
+    if (localStorage.getItem('isLoggedIn')=="false") {
+      history.push('/signin');
+    }
+    else if (user.userType === 'user') {
+      history.push('/user/home');
+    } else {
+      fetchProducts();
+    }
+  }, []);
   //fetchProducts();
   // post data on DB by from Submit
   const createProduct = async () => {
     setloader(true)
     try {
-      const res = await axios.post(`http://localhost:2000/admin/addProduct`, addProduct);
+      const res = await axios.post(`http://localhost:2000/admin/addProduct`,addProduct,{headers:{"Authorization":`Bearer ${token}`}});
       setloader(false)
       fetchProducts();
       toast.info("Product Created Successfully")
@@ -74,7 +87,7 @@ const AllProducts = (props) => {
   const deleteProduct = async (_id) => {
     setloader4(true)
     try {
-      const res = await axios.delete(`http://localhost:2000/admin/deleteProduct/${_id}`);
+      const res = await axios.delete(`http://localhost:2000/admin/deleteProduct/${_id}`,{headers:{"Authorization":`Bearer ${token}`}});
         setloader4(false)
         fetchProducts();
         toast.info("Product Deleted Successfully")
@@ -112,7 +125,7 @@ const AllProducts = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(addProduct)
       };
-      const res = await axios.put(`http://localhost:2000/admin/updateProduct/${id}`, addProduct);
+      const res = await axios.put(`http://localhost:2000/admin/updateProduct/${id}`,addProduct,{headers:{"Authorization":`Bearer ${token}`}});
       setaddProduct({
         title: "",
         price: Number,
@@ -125,12 +138,27 @@ const AllProducts = (props) => {
       console.log("error", error);
       setloader2(false)
       toast.error("Product Updation Failed")
+      setaddProduct({
+        title: "",
+        price: Number,
+        author: "",
+      })
     }
   };
+  const [state, setState] = useState({
+    selectedFiles: null
+  });
+  const fileSelectedHandler = event => {
+    setState({
+      selectedFiles: event.target.files[0]
+    })
+  };
+  const fileUploadHandler = () =>{
 
+  };
 
   return (
-    <Layout>
+    <Layout3>
       <Container>
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
@@ -158,7 +186,9 @@ const AllProducts = (props) => {
                 value={addProduct.author}
                 type="text"
                 onChange={(e) => handleDataChange(e)}
-              />
+              /><br></br>
+              <input type="file" onChange={fileSelectedHandler} />
+              <Button onClick={fileUploadHandler}>Upload</Button><br></br><br></br>
               {
                 loader ? (
                   <Button variant="primary" type="submit" id="addProduct">
@@ -271,7 +301,7 @@ const AllProducts = (props) => {
         }
 
       </CardGroup>
-    </Layout>
+    </Layout3>
   )
 
 }

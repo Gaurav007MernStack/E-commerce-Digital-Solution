@@ -8,7 +8,7 @@ import logo from '../../Images/E-cart.PNG';
 * @function Header2
 **/
 
-const Header2 = (props) => {
+const Header3 = (props) => {
     const history = useHistory();
     const logout = ()=> {
         localStorage.setItem('isLoggedIn', false);
@@ -18,7 +18,7 @@ const Header2 = (props) => {
         <Navbar collapseOnSelect expand="lg"  variant="dark" className="navclr">
             <Container>
                 {/*<Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>*/}
-                <Link to='/user/home' className="navbar-brand">E-DigiTal_CART</Link>
+                <Link to='/admin/home' className="navbar-brand">E-DigiTal_CART</Link>
                 <img src={logo} style={{width: "100px", height: "100px", borderTopLeftRadius: "100px"}} alt="Web Logo" />
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -34,15 +34,14 @@ const Header2 = (props) => {
                     <Nav>
                         {/*<Nav.Link href="#deets">Signin</Nav.Link>*/}
                         <li className="nav-item">
-                            <NavLink to="myWishlist" className="nav-link">Wishlist</NavLink>
+                            <NavLink to="getAllOrders" className="nav-link">All Current Orders</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="myOrders" className="nav-link">My Orders</NavLink>
+                            <NavLink to="getAllProducts" className="nav-link">All Products</NavLink>
                         </li>
                         <li className="nav-item">
                         <Button className="btn" onClick={() => logout()}>Logout</Button>
                         </li>
-                        
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -52,4 +51,4 @@ const Header2 = (props) => {
 
 }
 
-export default Header2
+export default Header3;

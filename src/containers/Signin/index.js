@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button, Card, CardGroup, Jumbotron, Spinner 
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import { toast } from 'react-toastify';
+import {useHistory} from 'react-router-dom';
 //import Input from '../../components/UI/Input';
 
 /**
@@ -11,6 +12,8 @@ import { toast } from 'react-toastify';
 **/
 
 const Signin = (props) => {
+  //const handleOnClick = () => history.push('/user/home');
+  const history = useHistory();
   const [loader, setloader] = useState(false);
   const [signin, setsignin] = useState({
     email: "",
@@ -33,14 +36,17 @@ const Signin = (props) => {
     setloader(true);
     try {
       const res = await axios.post(`http://localhost:2000/signin`, signin);
-      console.log(res)
-      if(res.error){
-        setloader(false);
-        toast.error("Signin Failed")
-      }else{
-        setloader(false);
-        toast.success("Signin Successful")
-      }
+      {/*console.log(res)*/}
+      const token_u = res.data.token;
+      const user_u = res.data.user;
+      let t = JSON.stringify(token_u)
+      let u = JSON.stringify(user_u)
+      localStorage.setItem('token', t);
+      localStorage.setItem('user', u);
+      localStorage.setItem('isLoggedIn', true);
+      setloader(false);
+      toast.success("Signin Successful")
+      history.push('/user/home');
       
       setsignin({
         email: "",
@@ -77,7 +83,7 @@ const Signin = (props) => {
               />
               {
                 loader ? (
-                  <Button variant="primary" type="submit" id="signin" >
+                  <Button variant="primary" type="submit" id="signin">
                     <Spinner
                       as="span"
                       animation="border"

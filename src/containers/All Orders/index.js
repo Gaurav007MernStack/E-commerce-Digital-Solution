@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Row, Col, Button, Card, CardGroup, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import Layout from '../../components/Layout';
+import Layout3 from '../../components/Layout3';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 //import Input from '../../components/UI/Input';
 /**
 * @author
 * @function allOrders
 **/
 const AllOrders = (props) => {
+    const history = useHistory();
     const [loader, setloader] = useState(false);
     const [loader2, setloader2] = useState(false);
     const [allOrders, setallOrders] = useState([]);
@@ -16,7 +18,7 @@ const AllOrders = (props) => {
     //get Orders For Admin
     const fetchOrders = async () => {
         try {
-            const res = await axios.get(`http://localhost:2000/getAllOrders`);
+            const res = await axios.get(`http://localhost:2000/getAllOrders`,{headers:{"Authorization":`Bearer ${token}`}});
             setallOrders(res.data);
             toast.success("Orders Fetched Successfully")
             //console.log("this",allOrders)
@@ -27,9 +29,20 @@ const AllOrders = (props) => {
         //console.log("res",allOrders);
     };
     //useEffect
-    useEffect(() => {
-        fetchOrders();
-    }, [])
+  let token_u = localStorage.getItem('token');
+  let token = JSON.parse(token_u);
+  let user_u = localStorage.getItem('user');
+  let user = JSON.parse(user_u);
+  useEffect(() => {
+    if (localStorage.getItem('isLoggedIn')=="false") {
+      history.push('/signin');
+    }
+    else if (user.userType === 'user') {
+      history.push('/user/home');
+    } else {
+      fetchOrders();
+    }
+  }, []);
     //fetchOrders();
 
     //delete Order from DB
@@ -61,7 +74,7 @@ const AllOrders = (props) => {
     };
 
     return (
-        <Layout>
+        <Layout3>
             <div className="allProduct">
                 <h2 className="allProductHead">All Orders</h2>
             </div>
@@ -139,7 +152,7 @@ const AllOrders = (props) => {
                 }
 
             </CardGroup>
-        </Layout>
+        </Layout3>
     )
 }
 export default AllOrders;
