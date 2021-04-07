@@ -19,7 +19,7 @@ const Header = (props) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
                         {/*<Nav.Link href="#deets">Signin</Nav.Link>*/}
-                        <li className="nav-item" style={{marginLeft: "750px"}}>
+                        <li className="nav-item" id="signin2">
                             <NavLink to="signin" className="nav-link">Signin</NavLink>
                         </li>
                         <li className="nav-item">

@@ -38,7 +38,9 @@ const AllProducts = (props) => {
     setaddProduct({
       title: "",
       price: Number,
-      author: "",
+      description: "",
+      category: "",
+      image: "",
     })
   };
 
@@ -59,7 +61,7 @@ const AllProducts = (props) => {
   let user_u = localStorage.getItem('user');
   let user = JSON.parse(user_u);
   useEffect(() => {
-    if (localStorage.getItem('isLoggedIn')=="false") {
+    if (localStorage.getItem('isLoggedIn') == "false") {
       history.push('/signin');
     }
     else if (user.userType === 'user') {
@@ -73,7 +75,7 @@ const AllProducts = (props) => {
   const createProduct = async () => {
     setloader(true)
     try {
-      const res = await axios.post(`http://localhost:2000/admin/addProduct`,addProduct,{headers:{"Authorization":`Bearer ${token}`}});
+      const res = await axios.post(`http://localhost:2000/admin/addProduct`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
       setloader(false)
       fetchProducts();
       toast.info("Product Created Successfully")
@@ -87,10 +89,10 @@ const AllProducts = (props) => {
   const deleteProduct = async (_id) => {
     setloader4(true)
     try {
-      const res = await axios.delete(`http://localhost:2000/admin/deleteProduct/${_id}`,{headers:{"Authorization":`Bearer ${token}`}});
-        setloader4(false)
-        fetchProducts();
-        toast.info("Product Deleted Successfully")
+      const res = await axios.delete(`http://localhost:2000/admin/deleteProduct/${_id}`, { headers: { "Authorization": `Bearer ${token}` } });
+      setloader4(false)
+      fetchProducts();
+      toast.info("Product Deleted Successfully")
     } catch (error) {
       console.log("error", error);
       setloader4(false)
@@ -98,14 +100,15 @@ const AllProducts = (props) => {
     }
   };
   //for getting user Data after click on Update
-  const getSingleProduct = async (_id, title, price, author) => {
+  const getSingleProduct = async (_id, title, price, description, category) => {
     setloader3(true)
     try {
       //const res = await axios.get(`http://localhost:2000/admin/getProductBYId/${_id}`);
       setaddProduct({
         title: title,
         price: price,
-        author: author,
+        description: description,
+        category: category,
       });
       setid({
         id: _id,
@@ -125,11 +128,13 @@ const AllProducts = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(addProduct)
       };
-      const res = await axios.put(`http://localhost:2000/admin/updateProduct/${id}`,addProduct,{headers:{"Authorization":`Bearer ${token}`}});
+      const res = await axios.put(`http://localhost:2000/admin/updateProduct/${id}`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
       setaddProduct({
         title: "",
         price: Number,
-        author: "",
+        description: "",
+        category: "",
+        image: "",
       })
       setloader2(false)
       fetchProducts();
@@ -141,28 +146,36 @@ const AllProducts = (props) => {
       setaddProduct({
         title: "",
         price: Number,
-        author: "",
+        description: "",
+        category: "",
+        image: "",
       })
     }
   };
-  const [state, setState] = useState({
-    selectedFiles: null
-  });
-  const fileSelectedHandler = event => {
-    setState({
-      selectedFiles: event.target.files[0]
+  //For Uploading Files IN Cloudinary
+  const uploadImage = async e => {
+    toast.warning("Wait..")
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'EcommerceImages')
+
+    const res = await fetch("https://api.cloudinary.com/v1_1/gauravtyp/image/upload", {
+      method: 'POST',
+      body: data
     })
-  };
-  const fileUploadHandler = () =>{
 
-  };
-
+    const file = await res.json()
+    console.log(file)
+    toast.success("Image Uploaded")
+    return file.secure_url;
+  }
   return (
     <Layout3>
       <Container>
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
-            <Form onSubmit={(e) => OnFormSubmit(e)} >
+            <Form onSubmit={(e) => OnFormSubmit(e)} encType='multipart/form-data' >
               <label>Title</label>
               <input
                 placeholder="Title"
@@ -179,16 +192,32 @@ const AllProducts = (props) => {
                 type="Number"
                 onChange={(e) => handleDataChange(e)}
               />
-              <label>Author</label>
+              <label>Description</label>
               <input
-                placeholder="Author"
-                name="author"
-                value={addProduct.author}
+                placeholder="Description"
+                name="description"
+                value={addProduct.description}
+                type="text"
+                onChange={(e) => handleDataChange(e)}
+              />
+              <label>Category</label>
+              <input
+                placeholder="Category"
+                name="category"
+                value={addProduct.category}
                 type="text"
                 onChange={(e) => handleDataChange(e)}
               /><br></br>
-              <input type="file" onChange={fileSelectedHandler} />
-              <Button onClick={fileUploadHandler}>Upload</Button><br></br><br></br>
+              <input
+                type="file"
+                name="image"
+                placeholder="image url"
+                onChange={async (e) => {
+                  const url = await uploadImage(e)
+                  setaddProduct({ ...addProduct, ["image"]: url });
+                  console.log("url", url);
+
+                }} />
               {
                 loader ? (
                   <Button variant="primary" type="submit" id="addProduct">
@@ -237,26 +266,33 @@ const AllProducts = (props) => {
         <h2 className="allProductHead">All Products</h2>
       </div>
       <CardGroup>
+      <div className="allProduct2">
+        <h2 className="allProductHead2">*Devices/SmartPhones</h2>
+      </div>
         {
           allProducts.map((item) => {
+            if(item.category == "Devices/SmartPhones"){
             return (
-              <Col style={{ marginBottom: "2%" }} md={{ span: 2, offset: 0 }}>
+              <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
                 <Card >
-                  <Card.Img variant="top" src={'https://46ba123xc93a357lc11tqhds-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/amazon-alexa-event-sept-2019.jpg'} />
+                  <Card.Img variant="top" src={item.image} />
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Text>
-                      {item.price}:Rs
+                      <b>₹{item.price}</b>
                   </Card.Text>
                     <Card.Text>
-                      {item.author}: Seller
+                      {item.description}
+                  </Card.Text>
+                  <Card.Text>
+                      {item.category}: <b>Category</b>
                   </Card.Text>
                   </Card.Body>
                   <Card.Footer>
                     <small className="text-muted">Last updated {item.updatedAt}</small>
                     {
                       loader3 ? (
-                        <Button className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.author)}>
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>
                           <Spinner
                             as="span"
                             animation="border"
@@ -269,10 +305,10 @@ const AllProducts = (props) => {
                     }
                     {
                       loader3 ? ("") : (
-                        <Button className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.author)}>Update</Button>
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>Update</Button>
                       )
                     }
-                    
+
                     {
                       loader4 ? (
                         <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>
@@ -291,12 +327,158 @@ const AllProducts = (props) => {
                         <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>Delete</Button>
                       )
                     }
-                    
+
                   </Card.Footer>
                 </Card>
 
               </Col>
-            )
+            )}
+          })
+        }
+
+      </CardGroup>
+        <hr></hr>
+      <CardGroup style={{marginTop: "3%"}}>
+      <div className="allProduct2">
+        <h2 className="allProductHead2">*Fashion(Boy/Girl)</h2>
+      </div>
+        {
+          allProducts.map((item) => {
+            if(item.category == "Fashion"){
+            return (
+              <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
+                <Card >
+                  <Card.Img variant="top" src={item.image} />
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>
+                      <b>₹{item.price}</b>
+                  </Card.Text>
+                    <Card.Text>
+                      {item.description}
+                  </Card.Text>
+                  <Card.Text>
+                      {item.category}: <b>Category</b>
+                  </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">Last updated {item.updatedAt}</small>
+                    {
+                      loader3 ? (
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />Loading...
+                        </Button>
+                      ) : ("")
+                    }
+                    {
+                      loader3 ? ("") : (
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>Update</Button>
+                      )
+                    }
+
+                    {
+                      loader4 ? (
+                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />Loading...
+                        </Button>
+                      ) : ("")
+                    }
+                    {
+                      loader4 ? ("") : (
+                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>Delete</Button>
+                      )
+                    }
+
+                  </Card.Footer>
+                </Card>
+
+              </Col>
+            )}
+          })
+        }
+
+      </CardGroup>
+      <hr></hr>
+      <CardGroup style={{marginTop: "3%"}}>
+      <div className="allProduct2">
+        <h2 className="allProductHead2">*Home Furnishing</h2>
+      </div>
+        {
+          allProducts.map((item) => {
+            if(item.category == "Home Furnishing"){
+            return (
+              <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
+                <Card >
+                  <Card.Img variant="top" src={item.image} />
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>
+                      <b>₹{item.price}</b>
+                  </Card.Text>
+                    <Card.Text>
+                      {item.description}
+                  </Card.Text>
+                  <Card.Text>
+                      {item.category}: <b>Category</b>
+                  </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">Last updated {item.updatedAt}</small>
+                    {
+                      loader3 ? (
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />Loading...
+                        </Button>
+                      ) : ("")
+                    }
+                    {
+                      loader3 ? ("") : (
+                        <Button style={{ marginLeft: "25%" }} className="productBtn1" onClick={() => getSingleProduct(item._id, item.title, item.price, item.description, item.category)}>Update</Button>
+                      )
+                    }
+
+                    {
+                      loader4 ? (
+                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />Loading...
+                        </Button>
+                      ) : ("")
+                    }
+                    {
+                      loader4 ? ("") : (
+                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => deleteProduct(item._id)}>Delete</Button>
+                      )
+                    }
+
+                  </Card.Footer>
+                </Card>
+
+              </Col>
+            )}
           })
         }
 

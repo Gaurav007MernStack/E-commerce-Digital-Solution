@@ -3,7 +3,7 @@ import { Container, Form, Row, Col, Button, Card, CardGroup, Jumbotron, Spinner 
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import { toast } from 'react-toastify';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 /**
 * @author
@@ -36,9 +36,9 @@ const Home = (props) => {
     fetchProducts();
   }, [])
   //place Order
-  const PlaceOrder =  () => {
+  const PlaceOrder = () => {
     setloader(true);
-    if(localStorage.getItem('isLoggedIn') == "false"){
+    if (localStorage.getItem('isLoggedIn') == "false") {
       toast.warning('Signin Required');
       setloader(false);
       history.push('/signin');
@@ -57,7 +57,7 @@ const Home = (props) => {
   //Add To Wishlist
   const addwishlist = () => {
     setloader2(true);
-    if(localStorage.getItem('isLoggedIn') == "false"){
+    if (localStorage.getItem('isLoggedIn') == "false") {
       toast.warning('Signin Required');
       setloader2(false);
       history.push('/signin');
@@ -80,66 +80,226 @@ const Home = (props) => {
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
       </Jumbotron>
       <CardGroup>
+        <div className="allProduct2">
+          <h2 className="allProductHead2">*Devices/SmartPhones</h2>
+        </div>
         {
           allProducts.map((item) => {
-            return (
-              <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
-                <Card >
-                  <Card.Img variant="top" src={'https://46ba123xc93a357lc11tqhds-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/amazon-alexa-event-sept-2019.jpg'} />
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                      {item.price}:Rs
-                  </Card.Text>
-                    <Card.Text>
-                      {item.author}: Seller
-                  </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    {/*<small className="text-muted">Last updated {item.updatedAt}</small><br></br>*/}
-                    {
-                      loader ? (
-                        <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>
-                          <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                          />Loading...
-                        </Button>
-                      ) : ("")
-                    }
-                    {
-                      loader ? ("") : (
-                      <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>Place Order</Button>
-                      )
-                    }
-                    
-                    {
-                      loader2 ? (
-                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>
-                          <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                          />Loading...
-                        </Button>
-                      ) : ("")
-                    }
-                    {
-                      loader2 ? ("") : (
-                        <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>Add To Wishlist</Button>
-                      )
-                    }
-                    
-                  </Card.Footer>
-                </Card>
+            if (item.category == "Devices/SmartPhones") {
+              return (
+                <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
+                  <Card >
+                    <Card.Img variant="top" src={item.image} />
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>
+                        <b>₹{item.price}</b>
+                      </Card.Text>
+                      <Card.Text>
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text>
+                        {item.category}: <b>Category</b>
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      {/*<small className="text-muted">Last updated {item.updatedAt}</small><br></br>*/}
+                      {
+                        loader ? (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader ? ("") : (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>Place Order</Button>
+                        )
+                      }
 
-              </Col>
-            )
+                      {
+                        loader2 ? (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader2 ? ("") : (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>Add To Wishlist</Button>
+                        )
+                      }
+
+                    </Card.Footer>
+                  </Card>
+
+                </Col>
+              )
+            }
+
+          })
+        }
+
+      </CardGroup>
+      <hr></hr>
+      <CardGroup style={{marginTop: "3%"}}>
+        <div className="allProduct2">
+          <h2 className="allProductHead2">*Fashion</h2>
+        </div>
+        {
+          allProducts.map((item) => {
+            if (item.category == "Fashion") {
+              return (
+                <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
+                  <Card >
+                    <Card.Img variant="top" src={item.image} />
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>
+                        <b>₹{item.price}</b>
+                      </Card.Text>
+                      <Card.Text>
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text>
+                        {item.category}: <b>Category</b>
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      {/*<small className="text-muted">Last updated {item.updatedAt}</small><br></br>*/}
+                      {
+                        loader ? (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader ? ("") : (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>Place Order</Button>
+                        )
+                      }
+
+                      {
+                        loader2 ? (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader2 ? ("") : (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>Add To Wishlist</Button>
+                        )
+                      }
+
+                    </Card.Footer>
+                  </Card>
+
+                </Col>
+              )
+            }
+
+          })
+        }
+
+      </CardGroup>
+
+      <hr></hr>
+      <CardGroup style={{marginTop: "3%"}}>
+        <div className="allProduct2">
+          <h2 className="allProductHead2">*Home Furnishing</h2>
+        </div>
+        {
+          allProducts.map((item) => {
+            if (item.category == "Home Furnishing") {
+              return (
+                <Col style={{ marginBottom: "2%" }} md={{ span: 3, offset: 0 }}>
+                  <Card >
+                    <Card.Img variant="top" src={item.image} />
+                    <Card.Body>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>
+                        <b>₹{item.price}</b>
+                      </Card.Text>
+                      <Card.Text>
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text>
+                        {item.category}: <b>Category</b>
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      {/*<small className="text-muted">Last updated {item.updatedAt}</small><br></br>*/}
+                      {
+                        loader ? (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader ? ("") : (
+                          <Button className="productBtn1" variant="warning" onClick={() => PlaceOrder()}>Place Order</Button>
+                        )
+                      }
+
+                      {
+                        loader2 ? (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />Loading...
+                          </Button>
+                        ) : ("")
+                      }
+                      {
+                        loader2 ? ("") : (
+                          <Button style={{ marginLeft: "2%" }} variant="danger" className="productBtn2" onClick={() => addwishlist()}>Add To Wishlist</Button>
+                        )
+                      }
+
+                    </Card.Footer>
+                  </Card>
+
+                </Col>
+              )
+            }
+
           })
         }
 

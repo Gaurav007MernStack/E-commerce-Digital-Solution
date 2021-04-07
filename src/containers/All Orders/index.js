@@ -84,7 +84,7 @@ const AllOrders = (props) => {
                         return (
                             <Col style={{ marginBottom: "2%" }} md={{ span: 4, offset: 0 }}>
                                 <Card >
-                                    <Card.Img variant="top" src={'https://46ba123xc93a357lc11tqhds-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/amazon-alexa-event-sept-2019.jpg'} />
+                                    <Card.Img variant="top" src={item.Products[0].image} />
                                     <Card.Body>
                                         <Card.Title>{item._id}<b><i>:Order_Id</i></b></Card.Title>
                                         <Card.Text>
@@ -94,7 +94,7 @@ const AllOrders = (props) => {
                                             <b>{item.Products[0].title}</b>:Product
                                         </Card.Text>
                                         <Card.Text>
-                                            <b>{item.Products[0].price}</b>:Rs
+                                            <b>₹{item.Products[0].price}</b>
                                         </Card.Text>
                                         <Card.Text>
                                             <b>{item.owner._id}</b>: User_Id

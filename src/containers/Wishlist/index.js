@@ -61,7 +61,7 @@ const Wishlist = (props) => {
             <h2 className="wTitle">Profile</h2>
           </div>
           <div className="userProfile">
-            <div className="userImg" ><img id="userLogo" style={{ width: "100px" }} src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAkjktNk_waKZ6A064JikKQRYLxoKPNIUR_g&usqp=CAU'} alt=""></img></div>
+            <div className="userImg" ><img id="userLogo" style={{ width: "100px" }} src={user.profilePicture} alt=""></img></div>
             <p className="userfName">{user.firstName}</p>
           </div>
           <div className="userOrder">
@@ -75,33 +75,23 @@ const Wishlist = (props) => {
           <div className="wishlistTitle">
             <h2 className="wTitle">My Wishlist</h2>
           </div>
-          {/*<div className="wishlistUser">
-              <div className="wishlistImg">
-                <img style={{width: "100px", borderRadius: "50px"}} src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBFOIQ61dANi9G6uAOE-8363t5GWYi554CkA&usqp=CAU'} alt="Key Chain"></img>
-              </div>
-              <div className="wishlistDescription">
-                <h2>{wishlist.Products[0].title}</h2>
-                <h5>{wishlist.Products[0].price}:Rs</h5>
-                <p>{wishlist.Products[0].author}</p>
-              </div>
-              <div className="wishlistDelete">
-                <button id="wishlistDelete">X</button>
-              </div>
-            </div>*/}
           <CardGroup>
             {
               wishlist.map((item) => {
                 return (
                   <Col style={{ marginBottom: "2%", textAlign: "center" }} md={{ span: 10, offset: 1 }}>
                     <Card >
-                      <Card.Img variant="top" src={'https://46ba123xc93a357lc11tqhds-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/amazon-alexa-event-sept-2019.jpg'} />
+                      <Card.Img variant="top" src={item.Products[0].image} />
                       <Card.Body>
                         <Card.Title>{item.Products[0].title}</Card.Title>
                         <Card.Text>
-                          {item.Products[0].price}:Rs
-                      </Card.Text>
+                          <b>₹{item.Products[0].price}</b>
+                        </Card.Text>
                         <Card.Text>
-                          {item.Products[0].author}: Seller
+                          {item.Products[0].description}
+                        </Card.Text>
+                        <Card.Text>
+                          {item.Products[0].category}
                         </Card.Text>
                       </Card.Body>
                       <Card.Footer>

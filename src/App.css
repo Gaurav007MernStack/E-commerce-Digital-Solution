@@ -6,6 +6,10 @@
 .navclr{
     background: #000;
 }
+/*Header*/
+#signin2{
+    margin-left: 750px;
+}
 /*Home Page*/
 .homeTitleHead{
     color: #ddd;
@@ -405,11 +409,25 @@ form{
     height: 100px;
     margin-top: 5%;
 }
+.allProduct2{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #fff;
+}
 .allProductHead{
     font-size: 50px;
     font-weight: lighter;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-shadow: 1px 1px 5px #000;
+}
+.allProductHead2{
+    font-size: 30px;
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px 5px #000;
+    margin-right: 55%;
 }
 /*Footer Bootstrap*/
 table{
@@ -454,5 +472,11 @@ tr{
     }
     .homeTitleHead {
         font-size: 40px;
+    }
+    #signin2{
+        margin-left: 0px;
+    }
+    .allProductHead2{
+        margin-right: 0%;
     }
 }
