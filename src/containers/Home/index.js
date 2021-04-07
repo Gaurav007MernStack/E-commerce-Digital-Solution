@@ -156,7 +156,7 @@ const Home = (props) => {
       <hr></hr>
       <CardGroup style={{marginTop: "3%"}}>
         <div className="allProduct2">
-          <h2 className="allProductHead2">*Fashion</h2>
+          <h2 className="allProductHead2">*Fashion(Boy/Girl)</h2>
         </div>
         {
           allProducts.map((item) => {
