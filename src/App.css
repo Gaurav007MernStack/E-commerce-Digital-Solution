@@ -11,6 +11,9 @@
     margin-left: 750px;
 }
 /*Home Page*/
+#jumbo2{
+    margin: 5rem;
+}
 .homeTitleHead{
     color: #ddd;
     text-shadow: 1px 1px 10px #000 , 3px 3px 5px red;;
@@ -478,5 +481,8 @@ tr{
     }
     .allProductHead2{
         margin-right: 0%;
+    }
+    #jumbo2{
+        margin: 1rem;
     }
 }

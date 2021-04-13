@@ -18,7 +18,7 @@ const Wishlist = (props) => {
   //get Wishlist For Admin
   const fetchwishlist = async () => {
     try {
-      const res = await axios.get(`http://localhost:2000/myWishlist`, { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/myWishlist`, { headers: { 'Authorization': `Bearer ${token}` } });
       setwishlist(res.data);
       toast.info("WishList Data Fetched")
     } catch (error) {
@@ -45,7 +45,7 @@ const Wishlist = (props) => {
   const deleteWishlist = async (_id) => {
     setloader(true);
     try {
-      const res = await axios.delete(`http://localhost:2000/deletewishlist/${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await axios.delete(`https://e-commerce-serve-r.herokuapp.com/deletewishlist/${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
       fetchwishlist();
       setloader(false);
     } catch (error) {

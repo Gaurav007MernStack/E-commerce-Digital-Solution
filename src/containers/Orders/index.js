@@ -18,7 +18,7 @@ const Orders = (props) => {
   //get MyOrders For Admin
   const fetchmyorders = async () => {
     try {
-      const res = await axios.get(`http://localhost:2000/myOrders`, { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/myOrders`, { headers: { 'Authorization': `Bearer ${token}` } });
       setorder(res.data);
       toast.info("Orders Data Fetched")
     } catch (error) {
@@ -45,7 +45,7 @@ const Orders = (props) => {
   const deleteOrder = async (_id) => {
     setloader(true);
     try {
-      const res = await axios.delete(`http://localhost:2000/deleteOrder/${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await axios.delete(`https://e-commerce-serve-r.herokuapp.com/deleteOrder/${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
       fetchmyorders();
       setloader(false)
     } catch (error) {

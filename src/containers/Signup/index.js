@@ -40,7 +40,7 @@ const Signup = (props) => {
   const usersignup = async () => {
     setloader(true);
     try {
-      const res = await axios.post(`http://localhost:2000/signup`, signup);
+      const res = await axios.post(`https://e-commerce-serve-r.herokuapp.com/signup`, signup);
       console.log(res)
       setloader(false);
       setsignup({

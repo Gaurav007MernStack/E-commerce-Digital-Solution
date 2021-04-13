@@ -46,7 +46,7 @@ const AllProducts = (props) => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:2000/getAllProducts`);
+      const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/getAllProducts`);
       console.log("data", res.data);
       setallProducts(res.data.products);
       toast.success("Products Fetched Successfully")
@@ -75,7 +75,7 @@ const AllProducts = (props) => {
   const createProduct = async () => {
     setloader(true)
     try {
-      const res = await axios.post(`http://localhost:2000/admin/addProduct`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
+      const res = await axios.post(`https://e-commerce-serve-r.herokuapp.com/admin/addProduct`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
       setloader(false)
       fetchProducts();
       toast.info("Product Created Successfully")
@@ -89,7 +89,7 @@ const AllProducts = (props) => {
   const deleteProduct = async (_id) => {
     setloader4(true)
     try {
-      const res = await axios.delete(`http://localhost:2000/admin/deleteProduct/${_id}`, { headers: { "Authorization": `Bearer ${token}` } });
+      const res = await axios.delete(`https://e-commerce-serve-r.herokuapp.com/admin/deleteProduct/${_id}`, { headers: { "Authorization": `Bearer ${token}` } });
       setloader4(false)
       fetchProducts();
       toast.info("Product Deleted Successfully")
@@ -103,7 +103,7 @@ const AllProducts = (props) => {
   const getSingleProduct = async (_id, title, price, description, category) => {
     setloader3(true)
     try {
-      //const res = await axios.get(`http://localhost:2000/admin/getProductBYId/${_id}`);
+      //const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/admin/getProductBYId/${_id}`);
       setaddProduct({
         title: title,
         price: price,
@@ -128,7 +128,7 @@ const AllProducts = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(addProduct)
       };
-      const res = await axios.put(`http://localhost:2000/admin/updateProduct/${id}`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
+      const res = await axios.put(`https://e-commerce-serve-r.herokuapp.com/admin/updateProduct/${id}`, addProduct, { headers: { "Authorization": `Bearer ${token}` } });
       setaddProduct({
         title: "",
         price: Number,

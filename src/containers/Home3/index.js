@@ -18,7 +18,7 @@ const Home3 = (props) => {
   //fetch All Products
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:2000/getAllProducts`);
+      const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/getAllProducts`);
       console.log("data", res.data);
       setallProducts(res.data.products);
       toast.info("Products Fetched Successfully")
@@ -45,7 +45,7 @@ const Home3 = (props) => {
 
   return (
     <Layout3>
-      <Jumbotron style={{ margin: '5rem', background: '#f7f5f5' }} className="text-center">
+      <Jumbotron id="jumbo2" style={{ background: '#f7f5f5' }} className="text-center">
         <h1 className="homeTitleHead">Welcome to E-Digital Cart</h1>
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
       </Jumbotron>
