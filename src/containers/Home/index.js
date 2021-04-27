@@ -39,11 +39,11 @@ const Home = (props) => {
   //place Order
   const PlaceOrder = () => {
     setloader(true);
-    if (localStorage.getItem('isLoggedIn') == "false") {
+    
       toast.warning('Signin Required');
       setloader(false);
       history.push('/signin');
-    } setloader(false);
+     setloader(false);
     //try {
     //  const res = await axios.post(`http://localhost:2000/placeOrder?productId=${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
     //  setloader(false);
