@@ -49,7 +49,7 @@ const Footer = (props) => {
               </tbody>
             </table>
             <div class="para text-white bg-secondary p-4">
-              <p class="text-white">copyright © all rights to reserved The E-Digital_Cart<b className="adminHead">({'G & N'})</b> 2021..</p>
+              <p class="text-white">copyright © all rights reserved to The E-Digital_Cart<b className="adminHead">({'G & N'})</b> 2021..</p>
             </div>
           </div>
     </div>
