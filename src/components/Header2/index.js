@@ -15,7 +15,7 @@ const Header2 = (props) => {
         history.push('/signin');
     };
     return (
-        <Navbar collapseOnSelect expand="lg"  variant="dark" className="navclr">
+        <Navbar collapseOnSelect expand="lg"  variant="dark" className="navclr sticky-top">
             <Container>
                 {/*<Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>*/}
                 <Link to='/user/home' className="navbar-brand">E-DigiTal_CART</Link>

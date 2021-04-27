@@ -10,7 +10,7 @@ import logo from '../../Images/E-cart.PNG';
 
 const Header = (props) => {
     return (
-        <Navbar collapseOnSelect expand="lg"  variant="dark" className="navclr">
+        <Navbar collapseOnSelect expand="lg"  variant="dark" className="navclr sticky-top p-0">
             <Container>
                 {/*<Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>*/}
                 <Link to='/' className="navbar-brand">E-DigiTal_CART</Link>
