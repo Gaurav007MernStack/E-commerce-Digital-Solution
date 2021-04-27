@@ -22,34 +22,34 @@ const Footer = (props) => {
               </thead>
               <tbody>
                 <tr>
-                  <td classN="btn-outline-secondary text-dark">OnePlus</td>
-                  <td classN="btn-outline-secondary text-dark">Jackets & Sweatshirts</td>
-                  <td classN="btn-outline-secondary text-dark">Bedsheets</td>
+                  <td className="btn-outline-secondary text-dark">OnePlus</td>
+                  <td className="btn-outline-secondary text-dark">Jackets & Sweatshirts</td>
+                  <td className="btn-outline-secondary text-dark">Bedsheets</td>
                 </tr>
                 <tr>
-                  <td classN="btn-outline-secondary text-dark">Samsung</td>
-                  <td classN="btn-outline-secondary text-dark">Women's Top T-shirts</td>
-                  <td classN="btn-outline-secondary text-dark">Cushion Cover</td>
+                  <td className="btn-outline-secondary text-dark">Samsung</td>
+                  <td className="btn-outline-secondary text-dark">Women's Top T-shirts</td>
+                  <td className="btn-outline-secondary text-dark">Cushion Cover</td>
                 </tr>
                 <tr>
-                  <td classN="btn-outline-secondary text-dark">Redmi</td>
-                  <td classN="btn-outline-secondary text-dark">Men's T-shirts & Polds</td>
-                  <td classN="btn-outline-secondary text-dark">Pillows</td>
+                  <td className="btn-outline-secondary text-dark">Redmi</td>
+                  <td className="btn-outline-secondary text-dark">Men's T-shirts & Polds</td>
+                  <td className="btn-outline-secondary text-dark">Pillows</td>
                 </tr>
                 <tr>
-                  <td classN="btn-outline-secondary text-dark">Iphone</td>
-                  <td classN="btn-outline-secondary text-dark">Flip-Flop Sandals</td>
-                  <td classN="btn-outline-secondary text-dark">Curtains</td>
+                  <td className="btn-outline-secondary text-dark">Iphone</td>
+                  <td className="btn-outline-secondary text-dark">Flip-Flop Sandals</td>
+                  <td className="btn-outline-secondary text-dark">Curtains</td>
                 </tr>
                 <tr>
-                  <td classN="btn-outline-secondary text-dark">Oppo</td>
-                  <td classN="btn-outline-secondary text-dark">Casual Shoes</td>
-                  <td classN="btn-outline-secondary text-dark">Best Sellers</td>
+                  <td className="btn-outline-secondary text-dark">Oppo</td>
+                  <td className="btn-outline-secondary text-dark">Casual Shoes</td>
+                  <td className="btn-outline-secondary text-dark">Best Sellers</td>
                 </tr>
               </tbody>
             </table>
-            <div classN="para text-white bg-secondary p-4">
-              <p classN="text-white">copyright © all rights reserved to The E-Digital_Cart<b className="adminHead">({'G & N'})</b> 2021..</p>
+            <div className="para text-white bg-secondary p-4">
+              <p className="text-white">copyright © all rights reserved to The E-Digital_Cart<b className="adminHead">({'G & N'})</b> 2021..</p>
             </div>
           </div>
     </div>
