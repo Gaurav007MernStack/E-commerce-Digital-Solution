@@ -81,7 +81,7 @@ const Home2 = (props) => {
       </Jumbotron>
       <CardGroup style={{background: "#fff"}}>
         <div className="allProduct2">
-          <h2 className="allProductHead2">*Devices/SmartPhones</h2>
+          <h2 id="Devices" className="allProductHead2">*Devices/SmartPhones</h2>
         </div>
         {
           allProducts.map((item) => {
@@ -156,7 +156,7 @@ const Home2 = (props) => {
       <hr></hr>
       <CardGroup style={{ marginTop: "3%", background: "#fff" }}>
         <div className="allProduct2">
-          <h2 className="allProductHead2">*Fashion(Boy/Girl)</h2>
+          <h2 id="Fashion" className="allProductHead2">*Fashion(Boy/Girl)</h2>
         </div>
         {
           allProducts.map((item) => {
@@ -231,7 +231,7 @@ const Home2 = (props) => {
       <hr></hr>
       <CardGroup style={{ marginTop: "3%", background: "#fff" }}>
         <div className="allProduct2">
-          <h2 className="allProductHead2">*Home Furnishing</h2>
+          <h2 id="Home" className="allProductHead2">*Home Furnishing</h2>
         </div>
         {
           allProducts.map((item) => {

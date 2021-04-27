@@ -15,9 +15,9 @@ const Footer = (props) => {
             <table>
               <thead>
                 <tr>
-                  <td class="btn-outline-light"><b><i>Devices / SmartPhones</i></b></td>
-                  <td class="btn-outline-light"><b><i>Fashion</i></b></td>
-                  <td class="btn-outline-light"><b><i>Home Furnishing</i></b></td>
+                  <td class="btn-outline-light"><b><i><a href="#Devices">Devices / SmartPhones</a></i></b></td>
+                  <td class="btn-outline-light"><b><i><a href="#Fashion">Fashion</a></i></b></td>
+                  <td class="btn-outline-light"><b><i><a href="#Home">Home Furnishing</a></i></b></td>
                 </tr>
               </thead>
               <tbody>
