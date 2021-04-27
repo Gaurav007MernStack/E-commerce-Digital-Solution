@@ -265,7 +265,7 @@ const AllProducts = (props) => {
       <div className="allProduct">
         <h2 className="allProductHead">All Products</h2>
       </div>
-      <CardGroup>
+      <CardGroup style={{background: "#fff"}}>
       <div className="allProduct2">
         <h2 className="allProductHead2">*Devices/SmartPhones</h2>
       </div>
@@ -338,7 +338,7 @@ const AllProducts = (props) => {
 
       </CardGroup>
         <hr></hr>
-      <CardGroup style={{marginTop: "3%"}}>
+      <CardGroup style={{marginTop: "3%", background: "#fff"}}>
       <div className="allProduct2">
         <h2 className="allProductHead2">*Fashion(Boy/Girl)</h2>
       </div>
@@ -411,7 +411,7 @@ const AllProducts = (props) => {
 
       </CardGroup>
       <hr></hr>
-      <CardGroup style={{marginTop: "3%"}}>
+      <CardGroup style={{marginTop: "3%", background: "#fff"}}>
       <div className="allProduct2">
         <h2 className="allProductHead2">*Home Furnishing</h2>
       </div>

@@ -34,6 +34,16 @@
     text-shadow: 1px 1px 10px #000 , 3px 3px 5px red;;
     font-size: 90px;
 }
+/*SIGNIN/SIGNUP*/
+form{
+    background:rgb(38, 53, 63);
+}
+label{
+    color: #fff;
+}
+.App{
+    background: rgb(38, 53, 63);
+}
 input{
     width:35vw;
     height: 38px;

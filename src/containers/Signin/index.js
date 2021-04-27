@@ -60,7 +60,7 @@ const Signin = (props) => {
   };
   return (
     <Layout>
-      <Container>
+      <Container className="form_view">
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={(e) => OnFormSubmit(e)} >

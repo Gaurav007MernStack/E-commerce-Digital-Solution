@@ -79,7 +79,7 @@ const Home2 = (props) => {
         <h1 className="homeTitleHead">E-Digital Cart</h1>
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
       </Jumbotron>
-      <CardGroup>
+      <CardGroup style={{background: "#fff"}}>
         <div className="allProduct2">
           <h2 className="allProductHead2">*Devices/SmartPhones</h2>
         </div>
@@ -154,7 +154,7 @@ const Home2 = (props) => {
 
       </CardGroup>
       <hr></hr>
-      <CardGroup style={{ marginTop: "3%" }}>
+      <CardGroup style={{ marginTop: "3%", background: "#fff" }}>
         <div className="allProduct2">
           <h2 className="allProductHead2">*Fashion(Boy/Girl)</h2>
         </div>
@@ -229,7 +229,7 @@ const Home2 = (props) => {
 
       </CardGroup>
       <hr></hr>
-      <CardGroup style={{ marginTop: "3%" }}>
+      <CardGroup style={{ marginTop: "3%", background: "#fff" }}>
         <div className="allProduct2">
           <h2 className="allProductHead2">*Home Furnishing</h2>
         </div>
