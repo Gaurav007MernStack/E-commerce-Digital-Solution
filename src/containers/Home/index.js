@@ -57,12 +57,12 @@ const Home = (props) => {
   };
   //Add To Wishlist
   const addwishlist = () => {
-    setloader2(true);
-    if (localStorage.getItem('isLoggedIn') == "false") {
+    setloader(true);
+    
       toast.warning('Signin Required');
-      setloader2(false);
+      setloader(false);
       history.push('/signin');
-    } setloader2(false);
+     setloader(false);
     //try {
     //  const res = await axios.post(`http://localhost:2000/addWishlist?productId=${_id}`, { headers: { 'Authorization': `Bearer ${token}` } });
     //  setloader2(false);
