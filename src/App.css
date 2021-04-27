@@ -11,6 +11,21 @@
     margin-left: 750px;
 }
 /*Home Page*/
+#particle{
+    background-image: url('./Images/Welcome.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  /*#particle::before{
+    content: "E-Digital_Cart";
+    position: absolute;
+    color: #ddd;
+    text-shadow: 1px 1px 10px #000, 3px 3px 5px red;
+    font-size: 150px;
+    line-height: 6;
+    height: 100px;
+    overflow: visible;
+  }*/
 #jumbo2{
     margin: 5rem;
 }

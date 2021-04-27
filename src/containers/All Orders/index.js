@@ -18,7 +18,7 @@ const AllOrders = (props) => {
     //get Orders For Admin
     const fetchOrders = async () => {
         try {
-            const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/getAllOrders`,{headers:{"Authorization":`Bearer ${token}`}});
+            const res = await axios.get(`http://localhost:2000/getAllOrders`,{headers:{"Authorization":`Bearer ${token}`}});
             setallOrders(res.data);
             toast.success("Orders Fetched Successfully")
             //console.log("this",allOrders)
@@ -49,7 +49,7 @@ const AllOrders = (props) => {
     const deleteOrder = async (_id) => {
         setloader2(true)
         try {
-            const res = await axios.delete(`https://e-commerce-serve-r.herokuapp.com/admin/deleteOrder/${_id}`);
+            const res = await axios.delete(`http://localhost:2000/admin/deleteOrder/${_id}`);
             setloader2(false)
             toast.success("Order Deleted")
             fetchOrders();
@@ -63,7 +63,7 @@ const AllOrders = (props) => {
     const updateOrder = async (_id) => {
         setloader(true)
         try {
-            const res = await axios.update(`https://e-commerce-serve-r.herokuapp.com/admin/updateProduct/${_id}`);
+            const res = await axios.update(`localhost:2000/admin/updateProduct/${_id}`);
             setloader(false)
             toast.success("Order Updated Successfully")
         } catch (error) {
