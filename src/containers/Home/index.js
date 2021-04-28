@@ -4,7 +4,7 @@ import axios from 'axios';
 import Layout from '../../components/Layout';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
-import Particle from './particles';
+import ParticleBackground from '../../components/Particles/ParticlesBackground';
 
 /**
 * @author
@@ -76,7 +76,8 @@ const Home = (props) => {
   };
   return (
     <Layout>
-      <Particle />
+      <ParticleBackground />
+      <CenterTitle />
       <Jumbotron id="jumbo2" style={{ background: '#f7f5f5' }} className="text-center">
         <h1 className="homeTitleHead">E-Digital Cart</h1>
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
@@ -310,6 +311,14 @@ const Home = (props) => {
     </Layout>
   )
 
-}
+};
+function CenterTitle(){
+  return(
+    <div id="text_div center_all" >
+      <div className="center_all">
+      </div>
+    </div>
+  )
+};
 
 export default Home;

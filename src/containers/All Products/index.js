@@ -486,6 +486,6 @@ const AllProducts = (props) => {
     </Layout3>
   )
 
-}
+};
 
 export default AllProducts;
