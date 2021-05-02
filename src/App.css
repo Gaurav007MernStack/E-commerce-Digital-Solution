@@ -1,4 +1,14 @@
 
+
+/*Home_Page*/
+.homepage{
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
 /*Header*/
 #text_div{
     position: absolute;

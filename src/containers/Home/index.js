@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import ParticleBackground from '../../components/Particles/ParticlesBackground';
+import HashLoader from "react-spinners/HashLoader";
 
 /**
 * @author
@@ -15,6 +16,7 @@ const Home = (props) => {
   const history = useHistory();
   const [loader, setloader] = useState(false);
   const [loader2, setloader2] = useState(false);
+  const [loaderSpin, setloaderSpin] = useState(true);
   const [allProducts, setallProducts] = useState([]);
   //fetch All Products
   const fetchProducts = async () => {
@@ -22,9 +24,10 @@ const Home = (props) => {
       const res = await axios.get(`https://e-commerce-serve-r.herokuapp.com/getAllProducts`);
       console.log("data", res.data);
       setallProducts(res.data.products);
-      toast.info("Products Fetched Successfully")
+      setloaderSpin(false);
     } catch (error) {
       console.log("error", error);
+      setloaderSpin(false);
       toast.error("Products Fetching Failed")
     }
   };
@@ -75,7 +78,13 @@ const Home = (props) => {
     //}
   };
   return (
-    <Layout>
+  <div style={{background: "#fff"}}>
+    {
+      loaderSpin ? 
+        <div className="homepage">
+          <HashLoader color={"#188871"} loading={loaderSpin} size={50} /></div>
+      :
+      <Layout>
       <ParticleBackground />
       <CenterTitle />
       <Jumbotron id="jumbo2" style={{ background: '#f7f5f5' }} className="text-center">
@@ -309,6 +318,9 @@ const Home = (props) => {
       </CardGroup>
 
     </Layout>
+    }
+  </div>
+    
   )
 
 };
