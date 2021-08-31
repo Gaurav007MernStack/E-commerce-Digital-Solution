@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import ParticleBackground from '../../components/Particles/ParticlesBackground';
 import HashLoader from "react-spinners/HashLoader";
+import GuideChimp from 'guidechimp';
 
 /**
 * @author
@@ -18,6 +19,20 @@ const Home = (props) => {
   const [loader2, setloader2] = useState(false);
   const [loaderSpin, setloaderSpin] = useState(true);
   const [allProducts, setallProducts] = useState([]);
+
+  //GuideChimp 
+  let tour = [
+      {
+        element: '#step1',
+        title: 'An amazing title',
+        description: 'It is simple. It is elegant. It is everything you want in a website title.'
+      }
+    ]
+  
+    var guidechimp = new GuideChimp(tour);
+
+
+
   //fetch All Products
   const fetchProducts = async () => {
     try {
@@ -38,6 +53,7 @@ const Home = (props) => {
   let user = JSON.parse(user_u);
   useEffect(() => {
     fetchProducts();
+    guidechimp.start();
   }, [])
   //place Order
   const PlaceOrder = () => {
