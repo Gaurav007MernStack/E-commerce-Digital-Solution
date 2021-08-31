@@ -1,5 +1,9 @@
 @import url('guidechimp/dist/guidechimp.min.css');
 
+.gc-highlight {
+    background: none;
+}
+
 /*Home_Page*/
 .homepage{
     background-color: #000;
