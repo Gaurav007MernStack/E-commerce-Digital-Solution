@@ -64,7 +64,7 @@ const Signin = (props) => {
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={(e) => OnFormSubmit(e)} >
-              <label id="step2">Email</label>
+              <label>Email</label>
               <input
                 placeholder="Email"
                 name="email"

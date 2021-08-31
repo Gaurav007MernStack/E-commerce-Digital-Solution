@@ -20,7 +20,7 @@ const Header = (props) => {
                     <Nav>
                         {/*<Nav.Link href="#deets">Signin</Nav.Link>*/}
                         <li className="nav-item" id="signin2">
-                            <NavLink to="signin" className="nav-link">Signin</NavLink>
+                            <NavLink id="step2" to="signin" className="nav-link">Signin</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="signup" className="nav-link">Signup</NavLink>
