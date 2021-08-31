@@ -26,6 +26,11 @@ const Home = (props) => {
         element: '#step1',
         title: 'An amazing title',
         description: 'It is simple. It is elegant. It is everything you want in a website title.'
+      },
+      {
+        element: '#step2',
+        title: 'An amazing title2',
+        description: 'It is simple. It is elegant. It is everything you want in a website title2.'
       }
     ]
   
